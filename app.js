@@ -1,3 +1,5 @@
+Display();
+
 // contructor to add books
 function book(bName, bAuthor, bType) {
     this.name = bName;
@@ -5,20 +7,51 @@ function book(bName, bAuthor, bType) {
     this.type = bType;
 };
 
+function rmBook(index) {
+    let myBooks = localStorage.getItem('books');
+    let booksObj = JSON.parse(myBooks);
+    booksObj.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(booksObj));
+    Display();
+};
+
 // constructor to display books
 function Display() {
-
+    let tableBody = document.getElementById('tableBody');
+    let books = localStorage.getItem('books');
+    if (books == null) {
+        allBooks = [];
+    } else {
+        allBooks = JSON.parse(books);
+    };
+    let uiHTML = '';
+    allBooks.forEach(function (element, index) {
+        uiHTML += `<tr>
+                        <td>${element.name}</td>
+                        <td>${element.author}</td>
+                        <td>${element.type}</td>
+                        <td><button id="${index}" type="button" onclick='rmBook(this.id)' class="btn btn-outline-dark">Delete</button></td>
+                    </tr>`;
+        tableBody.innerHTML = uiHTML;
+    })
 };
 
 // methods to add books in display
 Display.prototype.add = function (book) {
-    let tableBody = document.getElementById('tableBody');
-    let uiHTML = `<tr>
-                    <td>${book.name}</td>
-                    <td>${book.author}</td>
-                    <td>${book.type}</td>
-                </tr>`;
-    tableBody.innerHTML += uiHTML;
+    let books = localStorage.getItem('books');
+    if (books == null) {
+        allBooks = []
+    } else {
+        allBooks = JSON.parse(books);
+    };
+    let bookObj = {
+        name: book.name,
+        author: book.author,
+        type: book.type
+    };
+    allBooks.push(bookObj);
+    localStorage.setItem('books', JSON.stringify(allBooks));
+    Display();
 };
 
 // method to clear the form after book is added
