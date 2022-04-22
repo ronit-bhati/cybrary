@@ -10,7 +10,13 @@ function book(bName, bAuthor, bType) {
 function rmBook(index) {
     let myBooks = localStorage.getItem('books');
     let booksObj = JSON.parse(myBooks);
-    booksObj.splice(index, 1);
+    let rmDisplay = new Display;
+    if (booksObj.length == 1) {
+        booksObj.splice(index, 1);
+        window.location.reload();
+    } else {
+        booksObj.splice(index, 1);
+    };
     localStorage.setItem('books', JSON.stringify(booksObj));
     Display();
 };
@@ -18,6 +24,7 @@ function rmBook(index) {
 // constructor to display books
 function Display() {
     let tableBody = document.getElementById('tableBody');
+    let emptyTb = document.getElementById('emptyTb');
     let books = localStorage.getItem('books');
     if (books == null) {
         allBooks = [];
@@ -25,15 +32,27 @@ function Display() {
         allBooks = JSON.parse(books);
     };
     let uiHTML = '';
-    allBooks.forEach(function (element, index) {
-        uiHTML += `<tr>
-                        <td>${element.name}</td>
-                        <td>${element.author}</td>
-                        <td>${element.type}</td>
-                        <td><button id="${index}" type="button" onclick='rmBook(this.id)' class="btn btn-outline-dark">Delete</button></td>
-                    </tr>`;
-        tableBody.innerHTML = uiHTML;
-    })
+    if (allBooks.length == 0) {
+        uiHTML = `<div class="alert alert-dark" role="alert">
+                    <h4 class="alert-heading">Hey There!</h4>
+                    <p>It seems that there are no books in your library right now. Please add some books if your library to see your books here. You can use the form above to add books which are in your library.</p>
+                    <hr>
+                    <p class="mb-0">We hope that you like our library management system!</p>
+                </div>`;
+        emptyTb.innerHTML = uiHTML;
+    } else {
+        allBooks.forEach(function (element, index) {
+            uiHTML += `<tr>
+                            <td>${element.name}</td>
+                            <td>${element.author}</td>
+                            <td>${element.type}</td>
+                            <td><button id="${index}" type="button" onclick='rmBook(this.id)' class="btn btn-outline-dark">Delete</button></td>
+                        </tr>`;
+            emp = '';
+            emptyTb.innerHTML = '';
+            tableBody.innerHTML = uiHTML;
+        });
+    };
 };
 
 // methods to add books in display

@@ -12,95 +12,129 @@
 
     <title>Cybrary - Library Management Web Application</title>
     <style>
+        .pageCont {
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
         .navHead {
+            color: white;
+        }
+
+        .allBks{
+            margin-top: 50px;
+            margin-bottom: 120px;
+        }
+
+        .addBkRow{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0px;
+            height: 4.5rem;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <h3 class="navHead">Cybrary</h3>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="pageCont">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <h3 class="navHead"><b>Cybrary</b></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search"
-                    aria-label="Search">
-            </form>
-        </div>
-    </nav>
-    <div id="messege"></div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="searchBox" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+            </div>
+        </nav>
+        <div id="messege"></div>
 
-    <div class="container my-4">
-        <h1>Cybrary - Library Management</h1>
-        <hr>
-        <form id="addBook">
-            <div class="form-group row">
-                <label for="bookName" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="bookName" placeholder="Enter book name here">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="authorName" class="col-sm-2 col-form-label">Author</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="authorName" placeholder="Enter author name here">
-                </div>
-            </div>
-            <fieldset class="form-group" id="typeForm">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Type</legend>
+        <div class="container my-4">
+            <h1>Cybrary - Library Management</h1>
+            <hr>
+            <form id="addBook">
+                <div class="form-group row">
+                    <label for="bookName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="programming"
-                                value="Programming" checked>
-                            <label class="form-check-label" for="programming">
-                                Programming
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="cyberSecurity"
-                                value="Cyber Security">
-                            <label class="form-check-label" for="cyberSecurity">
-                                Cyber Security
-                            </label>
-                        </div>
-                        <div class="form-check disabled">
-                            <input class="form-check-input" type="radio" name="type" id="operatingSystems"
-                                value="Operating Systems">
-                            <label class="form-check-label" for="operatingSystems">
-                                Operating Systems
-                            </label>
-                        </div>
+                        <input type="text" class="form-control" id="bookName" placeholder="Enter book name here">
                     </div>
                 </div>
-            </fieldset>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Add Book</button>
+                <div class="form-group row">
+                    <label for="authorName" class="col-sm-2 col-form-label">Author</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="authorName" placeholder="Enter author name here">
+                    </div>
                 </div>
+                <fieldset class="form-group" id="typeForm">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Type</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="programming"
+                                    value="Programming" checked>
+                                <label class="form-check-label" for="programming">
+                                    Programming
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="cyberSecurity"
+                                    value="Cyber Security">
+                                <label class="form-check-label" for="cyberSecurity">
+                                    Cyber Security
+                                </label>
+                            </div>
+                            <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="type" id="operatingSystems"
+                                    value="Operating Systems">
+                                <label class="form-check-label" for="operatingSystems">
+                                    Operating Systems
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group row addBkRow">
+                    <div>
+                        <button type="submit" class="btn btn-outline-dark">Add Book</button>
+                    </div>
+                </div>
+            </form>
+            <div id="table" class="allBks">
+                <h2>Your Books</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+                <div id="emptyTb"></div>
             </div>
-        </form>
-        <div id="table">
-            <h2>Your Books</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
         </div>
+        <footer class="bg-dark">
+            <h4><b>easyNote &#169; Copyright</b></h4>
+        </footer>
     </div>
 
     <!-- Optional JavaScript -->
