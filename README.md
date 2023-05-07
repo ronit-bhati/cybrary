@@ -1,5 +1,5 @@
 # cybrary
-This is a library management system. This web application is made purely in javascipt. This project was made for practice purposes.
+This web application is made purely in javascipt. This project was made for practice purposes.
 
 This project have a form through which you can add a book. This will show all the books in a tabular format on the wepage.
 
